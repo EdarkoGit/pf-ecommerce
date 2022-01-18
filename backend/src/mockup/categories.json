@@ -1,0 +1,11 @@
+{
+  "categories": [
+    { "name": "computer" },
+    { "name": "mobile" },
+    { "name": "tv" },
+    { "name": "accessory" },
+    { "name": "tablet" },
+    { "name": "laptop" },
+    { "name": "procesador" }
+  ]
+}
