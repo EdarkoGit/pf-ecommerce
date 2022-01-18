@@ -7,15 +7,18 @@ import NavBar from './components/NavBar/index';
 //import Shop? from './components/Shop/index';                             -Home Shop
 //import ProductDetail? from './components/ProductDetail/index';           -Detalle del producto
 //import ProductCreateForm? from './components/ProductCreateForm/index';   -Form creación de producto
+import Home from './components/pages/Home';
+import Landing from './components/pages/Landing';
+
 
 
 function App() {
   return (
     <AppStyled className="App">
       <Routes>
-        {/* 
-        <Route path="/" element={<LandingPage/>}/>  ---------landing Page---------  */}
 
+        <Route path="/" element={<Landing/>}/> 
+        <Route path="/home" element={<Home/>}/> 
         <Route path="shop/*" element={<NavBar/>}>
           {/*-Rutas de los componentes:  1.HomeSHOP(Shop)  2.DETALLEPROD(ProductDetail)  3.FORMCREACPROD(ProductCreateForm)
               <Route path="" element={<Shop?/>}/>
