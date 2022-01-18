@@ -7,27 +7,35 @@ import NavBar from './components/NavBar/index';
 //import Shop? from './components/Shop/index';                             -Home Shop
 //import ProductDetail? from './components/ProductDetail/index';           -Detalle del producto
 //import ProductCreateForm? from './components/ProductCreateForm/index';   -Form creación de producto
-import Home from './components/pages/Home';
-import Landing from './components/pages/Landing';
 
+// -------------- Pages --------------- // 
+import Home from './components/pages/Home/index';
+import Landing from './components/pages/Landing/index';
+
+// -------------- Pages --------------- // 
+import {Wrapper} from './components/common/container/Wrapper';
 
 
 function App() {
   return (
     <AppStyled className="App">
-      <Routes>
+      <Wrapper>
 
-        <Route path="/" element={<Landing/>}/> 
-        <Route path="/home" element={<Home/>}/> 
-        <Route path="shop/*" element={<NavBar/>}>
-          {/*-Rutas de los componentes:  1.HomeSHOP(Shop)  2.DETALLEPROD(ProductDetail)  3.FORMCREACPROD(ProductCreateForm)
+        <Routes>
+          {/* 
+        <Route path="/" element={<LandingPage/>}/>  ---------landing Page---------  */}
+          <Route path="" element={<Landing />} />
+          <Route path="home" element={<Home />} />
+          <Route path="shop/*" element={<NavBar />}>
+            {/*-Rutas de los componentes:  1.HomeSHOP(Shop)  2.DETALLEPROD(ProductDetail)  3.FORMCREACPROD(ProductCreateForm)
               <Route path="" element={<Shop?/>}/>
               <Route path={`/shop/products/:idProduct`} element={<ProductDetail/>} />
               <Route path="?product/addproduct" element={<ProductCreateForm/>}/> */
-          }
-        </Route>
-        
-      </Routes>
+            }
+          </Route>
+
+        </Routes>
+      </Wrapper>
     </AppStyled>
   );
 }
