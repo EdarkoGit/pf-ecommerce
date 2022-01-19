@@ -1,21 +1,24 @@
 import styled from "styled-components";
 
-const StyledHero = styled.section`
-  background-color: ${({ bgColor }) => bgColor || "#16bcdc"};
+const SectionHero = styled.section`
+  display: flex;
+  background: teal;
 
   > * {
     height: 200px;
   }
+  & .left {
+    background: #0dcaf0;
+  }
   & .right {
-
-  
+    background: #dc3545;
   }
   `
 
 
 export default function Hero() {
   return (
-    <StyledHero>
+    <SectionHero>
       <div className="left">left</div>
       <div className="right">
         <div>1</div>
@@ -23,7 +26,7 @@ export default function Hero() {
         <div>3</div>
         <div>4</div>
       </div>
-    </StyledHero>
+    </SectionHero>
   )
 }
 
