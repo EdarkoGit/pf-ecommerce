@@ -10,9 +10,8 @@ import NavBar from './components/NavBar/index';
 
 // -------------- Pages --------------- // 
 import Home from './components/pages/Home/index';
-import Landing from './components/pages/Landing/index';
 
-// -------------- Pages --------------- // 
+// -------------- max-width container --------------- // 
 import {Wrapper} from './components/common/container/Wrapper';
 
 
@@ -24,8 +23,7 @@ function App() {
         <Routes>
           {/* 
         <Route path="/" element={<LandingPage/>}/>  ---------landing Page---------  */}
-          <Route path="" element={<Landing />} />
-          <Route path="home" element={<Home />} />
+          <Route path="" element={<Home />} />
           <Route path="shop/*" element={<NavBar />}>
             {/*-Rutas de los componentes:  1.HomeSHOP(Shop)  2.DETALLEPROD(ProductDetail)  3.FORMCREACPROD(ProductCreateForm)
               <Route path="" element={<Shop?/>}/>
