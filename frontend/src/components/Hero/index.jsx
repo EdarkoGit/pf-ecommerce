@@ -1,4 +1,4 @@
-import ContainerCarousel from "./ContainerCarousel/ContainerCarousel";
+import ContainerCarousel from "./ContainerCarousel";
 import ContainerGrid from "./ContainerGrid/ContainerGrid";
 import { StyledHero } from "./styled";
 
