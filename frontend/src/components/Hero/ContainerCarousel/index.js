@@ -1,15 +1,12 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import { Link } from 'react-router-dom'
 const StyledContainerCarousel = styled.div`
   flex: 1 60%;
-  /* background-color: green; */
   box-sizing: content-box;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  /* z-index: -1; */
 
   /* Slideshow container */
   .slideshow-container {
@@ -72,7 +69,6 @@ export default function ContainerCarousel({ data }) {
   const handleSlide = (idSlide) => {
     setVisibleSlide(idSlide)
   }
-  // let slideData = data.find()
   return (
     <StyledContainerCarousel>
       <div className="slideshow-container">

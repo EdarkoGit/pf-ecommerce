@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import GlobalStyles from "./globalStyles";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { store } from "./redux/store/index";
@@ -18,6 +19,7 @@ ReactDOM.render(
     <Provider store={store}>
       <Router>
         <App />
+        <GlobalStyles />
       </Router>
     </Provider>
   </React.StrictMode>,

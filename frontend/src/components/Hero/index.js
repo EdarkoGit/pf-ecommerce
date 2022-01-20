@@ -1,5 +1,4 @@
 import styled from "styled-components";
-// import Card from "./Card/index"
 import ContainerCarousel from "./ContainerCarousel/index";
 import CountainerGrid from "./ContainerGrid/index";
 
