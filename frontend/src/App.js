@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { AppStyled } from "./AppStyle";
+import Shop from "./components/Routes/SHOP/index";
 import { Footer } from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import Home from "./components/pages/Home";
