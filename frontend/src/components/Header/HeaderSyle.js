@@ -3,7 +3,7 @@ import { mainBgcolor } from "../../utilsStyles/utilsColors";
 import "../../utilsStyles/rubikFont.css";
 
 export const HeaderStyled = styled.header`
-  position: fixed;
+  position: sticky;
   top: 0;
   width: 100vw;
   background: ${mainBgcolor};

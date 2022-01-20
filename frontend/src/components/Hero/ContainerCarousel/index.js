@@ -19,7 +19,10 @@ const StyledContainerCarousel = styled.div`
   
   /* Hide the images by default */
   .mySlides {
-    display: none;
+    display:none;
+  }
+  .mySlides.visible {
+    display:block;
   }
 
   /* The dots/bullets/indicators */
@@ -64,48 +67,36 @@ const StyledContainerCarousel = styled.div`
 
 `
 export default function ContainerCarousel({ data }) {
-  const [visibleSlide] = useState(0)
+  const [visibleSlide, setVisibleSlide] = useState(0)
 
-  const handleSlide=()=>{
-    return alert("hola")
+  const handleSlide = (idSlide) => {
+    setVisibleSlide(idSlide)
   }
+  // let slideData = data.find()
   return (
     <StyledContainerCarousel>
-      <div className="slideshow-container" onClick={(e) =>handleSlide("Hola")}>
-        
-          {
-          /* 
-          data.map(slide => (
-            <div className="mySlides fade" style={{display: "block"}}>
-            <img src={data[0].imgsrc} alt="carousel 1" />
-            </div>
-          ))
-         */}
+      <div className="slideshow-container">
 
-        <Link to="/" className="mySlides fade" style={{display: "block"}}>
-          <img src={data[0].imgsrc} alt="carousel 1" />
-        </Link>
-
-        <div className="mySlides fade">
-          <img src={data[1].imgsrc} alt="carousel 1" />
-        </div>
-
-        <div className="mySlides fade">
-          <img src={data[2].imgsrc} alt="carousel 1" />
-        </div>
+        {
+          data.map((slide, id) => {
+              return (
+                <div className={`fade mySlides${id === visibleSlide ? " visible":""}`}  key={id}>
+                  <img src={slide.imgsrc} alt="carousel 1" />
+                </div>
+              )
+          })
+        }
 
       </div>
 
-      <div 
-      style={{border: "1px solid red;"}}
-      className="dots" >
+      <div className="dots" >
         {
           data.map((_, id) => (
             <span
               key={id}
-              // onClick={handleSlide(id)} 
-              className={`${id===visibleSlide?"dot active":"dot"}`}
-              ></span>
+              onClick={() => handleSlide(id)}
+              className={`${id === visibleSlide ? "dot active" : "dot"}`}
+            ></span>
           ))
         }
       </div>
