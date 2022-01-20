@@ -14,7 +14,7 @@ function App() {
   return (
     <AppStyled className="App">
       <NavBar />
-      <Wrapper>
+      <Wrapper marginTop="30px">
         <Routes>
           <Route path="/shop" />
           <Route path="/favorites" />
