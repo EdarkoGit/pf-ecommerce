@@ -1,19 +1,7 @@
-import styled from "styled-components";
 import ContainerCarousel from "./ContainerCarousel/index";
-import CountainerGrid from "./ContainerGrid/index";
+import ContainerGrid from "./ContainerGrid/index";
+import { StyledHero } from "./styled";
 
-
-const SectionHero = styled.section`
-  display: flex;
-  flex-direction: column;
-  padding: 0 10px;
-  gap: 15px;
-  margin-bottom: 30px;
-  @media (min-width: 768px) {
-    flex-direction: row;
-  }
-
-`
 
 
 
@@ -65,10 +53,10 @@ const data = {
 
 export default function Hero() {
   return (
-    <SectionHero>
+    <StyledHero>
       <ContainerCarousel data={data.carousel}/>
-      <CountainerGrid data={data.grid}/>
-    </SectionHero>
+      <ContainerGrid data={data.grid}/>
+    </StyledHero>
   )
 }
 

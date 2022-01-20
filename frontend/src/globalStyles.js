@@ -10,12 +10,10 @@ export default createGlobalStyle`
     animation-name: fade;
     animation-duration: 1.5s;
   }
-
   @-webkit-keyframes fade {
     from {opacity: .4}
     to {opacity: 1}
   }
-
   @keyframes fade {
     from {opacity: .4}
     to {opacity: 1}
