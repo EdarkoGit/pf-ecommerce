@@ -1,6 +1,4 @@
 const server = require("express").Router();
-const express = require("express");
-const cors = require("cors");
 
 const { URL_REACT } = process.env;
 
