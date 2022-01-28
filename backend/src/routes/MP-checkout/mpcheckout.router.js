@@ -1,4 +1,5 @@
 const server = require("express").Router();
+const express = require("express");
 
 const { URL_REACT } = process.env;
 
@@ -9,6 +10,16 @@ mercadopago.configure({
   access_token:
     "TEST-1956424169552169-012712-6b11b8b259b8cf1e4ea6ac34ab4a6da8-193113380",
 });
+server.use(express.urlencoded({ extended: false }));
+server.use(express.json());
+server.use(
+  require("cors")({
+    origin: function (origin, callback) {
+      callback(null, origin);
+    },
+    credentials: true,
+  })
+);
 
 // Crea un objeto de preferencia
 /* let preference = {
