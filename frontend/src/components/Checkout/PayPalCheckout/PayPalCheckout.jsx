@@ -1,6 +1,6 @@
 import React from "react";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-import { cleanCart } from "../../../redux/reducers/cart/actions";
+import { deleteCart } from "../../../redux/reducers/cart/actions";
 import { useDispatch } from "react-redux";
 
 export default function PayPalCheckout({ cart, formData, shippingAmount }) {
@@ -101,7 +101,7 @@ export default function PayPalCheckout({ cart, formData, shippingAmount }) {
         //let email = res.payer.email_address;
         console.log(res);
         alert(`Payment processed correctly, ID: ${res.id}`);
-        dispatch(cleanCart());
+        dispatch(deleteCart());
       })
       .catch((error) => {
         console.log(error);
