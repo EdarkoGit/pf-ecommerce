@@ -3,7 +3,7 @@ import {
   DELETE_PRODUCT,
   CHANGE_PRODUCT,
   SET_LOCAL_CART,
-  CLEAN_CART,
+  DELETE_CART,
 } from "./consts";
 
 const creator = function (type, payload) {
@@ -51,9 +51,9 @@ export const setLocalCart = function (localCart) {
   };
 };
 
-export const cleanCart = function () {
+
+export const deleteCart = function () {
   return async function (dispatch) {
     await localStorage.removeItem("cart");
-    await dispatch(creator(CLEAN_CART));
-  };
+    await dispatch(creator(DELETE_CART));
 };

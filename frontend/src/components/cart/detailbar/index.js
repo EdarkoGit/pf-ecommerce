@@ -41,3 +41,4 @@ const Detailtbar = function ({ cart }) {
 };
 
 export default Detailtbar;
+

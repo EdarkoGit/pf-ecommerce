@@ -4,7 +4,7 @@ import {
   DELETE_PRODUCT,
   CHANGE_PRODUCT,
   SET_LOCAL_CART,
-  CLEAN_CART,
+  DELETE_CART,
 } from "./consts";
 
 const initialState = new CartObj();
@@ -25,7 +25,7 @@ export const cart = (state = initialState, { type, payload }) => {
     case CHANGE_PRODUCT:
       newCart.setCountProduct(payload);
       return newCart;
-    case CLEAN_CART:
+    case DELETE_CART:
       return new CartObj();
     default:
       return state;
