@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { StyledProductInfo } from "./styled";
 
 export default function ProductInfo({ product }) {
   const [quantity, setQuantity] = useState(1);
+  const [disabled, setDisabled] = useState(false);
 
   const onAddQuantityHandler = () => {
     if (quantity < product.stock) {
@@ -14,6 +15,10 @@ export default function ProductInfo({ product }) {
       setQuantity(quantity - 1);
     }
   };
+
+  useEffect(() => {
+    setDisabled(product.stock === 0);
+  }, []);
 
   return (
     <StyledProductInfo>
@@ -63,7 +68,9 @@ export default function ProductInfo({ product }) {
                 +
               </button>
             </div>
-            <button className="addCart">ADD TO CART</button>
+            <button className="addCart" disabled={disabled}>
+              ADD TO CART
+            </button>
           </div>
         </div>
       </div>

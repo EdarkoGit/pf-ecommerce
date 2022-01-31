@@ -100,6 +100,9 @@ export const StyledProductInfo = styled.section`
             cursor: pointer;
             background-color: #0d6efd;
           }
+          &:disabled {
+            cursor: not-allowed;
+          }
         }
       }
     }
