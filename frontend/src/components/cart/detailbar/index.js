@@ -1,11 +1,17 @@
 import React from "react";
 import { DetailbarStyled } from "./styles";
-import { NavLink } from "react-router-dom";
-import { StyledButton } from "../../Login/Styled/StyledButton";
+import { useNavigate } from "react-router-dom";
+import { StyledButton as Button } from "../../Login/Styled/StyledButton";
 
 const Detailtbar = function ({ cart }) {
+  const navigate = useNavigate();
+
   const subtotal = cart.getSubtotalPrice();
   const shipping = subtotal > 0 ? 7 : 0;
+
+  function checkout() {
+    navigate(`/checkout?shipping=${shipping}`);
+  }
 
   return (
     <DetailbarStyled>
@@ -28,9 +34,8 @@ const Detailtbar = function ({ cart }) {
           </span>
         </li>
       </ul>
-      <NavLink to="/checkout">
-        <StyledButton>Pagar</StyledButton>
-      </NavLink>
+      <br />
+      <Button onClick={checkout}>Checkout</Button>
     </DetailbarStyled>
   );
 };
