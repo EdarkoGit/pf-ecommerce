@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { UserItemsStyled } from "./UserItemsStyled";
 import Box from "./Box/Box";
 import { useState } from "react";
 import { corsAxiosGet } from "../../../../services/corsAxios";
 import { deleteMessage, logout } from "../../../../redux/reducers/login/actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteCart } from "../../../../redux/reducers/cart/actions";
+
 
 export default function UserItems() {
   const [user, setUser] = useState({ username: "" });
@@ -42,6 +44,8 @@ export default function UserItems() {
     }
   }, []);
 
+  var cart = useSelector((state) => state.cart);
+
   return (
     <UserItemsStyled>
       <Box
@@ -54,7 +58,11 @@ export default function UserItems() {
             : ["Sign in", "Create an Account"]
         }
       />
-      <Box Imgsrc="cart" Imgalt="Cart image" Text={["My Cart", "$0.00"]} />
+      <Box
+        Imgsrc="cart"
+        Imgalt="Cart image"
+        Text={["My Cart", `$${cart.getSubtotalPrice()}`]}
+      />
     </UserItemsStyled>
   );
 }
