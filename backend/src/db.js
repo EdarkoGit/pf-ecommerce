@@ -88,7 +88,10 @@ Image.belongsToMany(Product, {
   timestamps: false,
 });
 
-Product.belongsToMany(Supplier, { through: "ProductSupplier" });
+Product.belongsToMany(Supplier, {
+  as: "suppliers",
+  through: "ProductSupplier",
+});
 Supplier.belongsToMany(Product, { through: "ProductSupplier" });
 
 Product.belongsToMany(User, { through: "Favorite" });
