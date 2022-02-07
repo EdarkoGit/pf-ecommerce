@@ -7,7 +7,7 @@ const createOrder = async (req, res, next) => {
       date, adress: address,
     });
 
-    if (idUser.length > 0) await newOrder.setUser(idUser); // id del usuario que compra
+    if (idUser) await newOrder.setUser(idUser); // id del usuario que compra
 
     for (let i = 0; i < products.length; i++) {
       const { id, price, amount } = products[i];
