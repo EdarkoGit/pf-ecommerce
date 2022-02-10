@@ -35,9 +35,20 @@ module.exports = (config) => {
             });
             return done(null, false);
           }
-          // if (user && !user.verified) {
-          //   return done(null, false);
-          // }
+          if (user && !user.isActive) {
+            req.session.messages.push({
+              text: "Deleted user!!",
+              type: "danger",
+            });
+            return done(null, false);
+          }
+          if (user && !user.verified) {
+            req.session.messages.push({
+              text: "verify your email account.",
+              type: "danger",
+            });
+            return done(null, false);
+          }
           const isValid = await user.comparePassword(password);
           if (!isValid) {
             req.session.messages.push({
@@ -64,6 +75,9 @@ module.exports = (config) => {
       async (jwtPayload, done) => {
         try {
           const user = await User.findByPk(jwtPayload.userId);
+          if (user && !user.isActive) {
+            return done(null, false);
+          }
           if (user && !user.verified) {
             return done(null, false);
           }
@@ -85,7 +99,13 @@ module.exports = (config) => {
       async (jwtPayload, done) => {
         try {
           const user = await User.findByPk(jwtPayload.userId);
-          if (user && !user.verified && user.type !== "admin") {
+          if (user && !user.isActive) {
+            return done(null, false);
+          }
+          if (user && !user.verified) {
+            return done(null, false);
+          }
+          if (user && user.type !== "admin") {
             return done(null, false);
           }
           return done(null, user);

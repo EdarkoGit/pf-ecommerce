@@ -4,7 +4,8 @@ import { GoLocation } from "react-icons/go";
 import Modal from "./Modal/Modal";
 import { ButtonStyled } from "./Button/ButtonStyled";
 import { useEffect } from "react";
-import axios from "axios";
+import { getGeoUser } from "../../../../redux/reducers/geolocation/actions";
+import { useDispatch, useSelector } from "react-redux";
 
 function LocationMenu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,25 +14,26 @@ function LocationMenu() {
     setIsOpen(false);
   };
 
-  const [country, setCountry] = useState("");
+  const dispatch = useDispatch();
+  const country = useSelector((store) => store.geolocation);
+
   useEffect(() => {
     let mounted = true;
-    if (mounted) {
-      axios.get("https://ipapi.co/json/").then((response) => {
-        setCountry(response.data.country_capital);
-      });
+    if (mounted && Object.keys(country).length === 0) {
+      dispatch(getGeoUser());
     }
     return () => {
       mounted = false;
     };
+    //eslint-disable-next-line
   }, []);
 
   return (
     <LocationMenuStyled>
       <GoLocation />
       <div>
-        <p>Enviar a</p>
-        <p>{country.length > 0 ? country : "---"}</p>
+        <p>Deliver to</p>
+        <p>{Object.keys(country).length ? country.countryCapital : "---"}</p>
       </div>
       <div style={{ position: "relative", zIndex: 1 }}>
         <ButtonStyled
@@ -43,7 +45,11 @@ function LocationMenu() {
           left="-8rem"
           zindex="-1"
         ></ButtonStyled>
-        <Modal open={isOpen} onClose={handleOnClose}></Modal>
+        <Modal
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          onClose={handleOnClose}
+        ></Modal>
       </div>
     </LocationMenuStyled>
   );

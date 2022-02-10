@@ -1,5 +1,6 @@
 import { GET_ORDERS_LIST, GET_ORDERS_USER } from "./const";
 import { setData } from "./services/setData";
+import { GET_ORDERS_LIST, GET_ONE_ORDER, UPDATE_STATUS_ONE_ORDER } from "./const";
 
 const initialState = {
   page: 0,
@@ -9,13 +10,22 @@ const initialState = {
   orders: [],
   ordersKeys: [],
   ordersUsers: []
+  ordersDetails: {},
 };
 
 export const ordersAdmin = (state = initialState, { type, payload }) => {
   const cases = {
     [GET_ORDERS_LIST]: () => {
-      const newData = setData({ payload, state })
-      return newData},
+      const { page, ordersByPage, pageCount, ordersCount, orders } = payload;
+
+      return { ...state, page, ordersByPage, pageCount, ordersCount, orders }
+    },
+    [GET_ONE_ORDER]: () => {
+      return {...state, ordersDetails: payload }
+    },
+    [UPDATE_STATUS_ONE_ORDER]: () => {
+
+    }
   };
   return (cases[type] && cases[type]()) || state;
 };

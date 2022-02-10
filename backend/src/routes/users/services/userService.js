@@ -41,31 +41,33 @@ const userService = {
       const existingUser = await User.findOne({
         where: {
           [Op.or]: [{ email }, { username }],
+          isActive: true,
         },
         include: OauthProfile,
       });
 
       if (existingUser) {
-        console.log(`existin user `);
+        //existin user
         const [profile, created] = await OauthProfile.findOrCreate({
           where: { provider },
           defaults: { profileId },
         });
         console.log(profile.toJSON());
         if (!created) {
-          console.log(`existin user profile`);
+          // existin user profile
           return [existingUser, false];
         } else {
-          console.log(`existin user no profile`);
+          // existin user without profile
           existingUser.addOauthProfile(profile);
           return [existingUser, false];
         }
       } else {
-        console.log(`no user `);
+        // no user --> create a new one
         const user = await User.create(
           {
             username,
             email,
+            verified: true,
             OauthProfiles: { profileId, provider },
           },
           { include: [{ association: User.OauthProfile }] }
@@ -81,6 +83,7 @@ const userService = {
     const { profileId, provider } = profile;
     try {
       const user = await User.findOne({
+        where: { isActive: true },
         include: [{ model: OauthProfile, where: { profileId, provider } }],
       });
       return user;
@@ -90,7 +93,26 @@ const userService = {
   },
   find: async (userId) => {
     try {
-      const user = await User.findByPk(userId);
+      const user = await User.findByPk(userId, { where: { isActive: true } });
+      return user;
+    } catch (error) {
+      console.error(error);
+    }
+  },
+  findByEmailOrUsername: async ({ email, username }) => {
+    const query = {};
+    if (email && username) {
+      query.where = {
+        [Op.or]: [{ email }, { username }],
+        isActive: true,
+      };
+    } else if (email && !username) {
+      query.where = { email };
+    } else if (!email && username) {
+      query.where = { username };
+    }
+    try {
+      const user = await User.findOne(query);
       return user;
     } catch (error) {
       console.error(error);
@@ -99,7 +121,7 @@ const userService = {
   updateUser: async (userData) => {
     try {
       const user = await User.findByPk(userData.id);
-      if (!user) {
+      if (!user || !user.isActive) {
         return "no user found";
       }
       const where = (userData.username && { username: userData.username }) || {

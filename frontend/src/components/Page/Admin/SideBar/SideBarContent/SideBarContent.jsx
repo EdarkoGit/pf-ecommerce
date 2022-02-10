@@ -73,13 +73,17 @@ const SideBarContent = () => {
           <Link onClick={handleClick} className="hvr-bounce-to-right" to="">
             Suppliers
           </Link>
-          <Link onClick={handleClick} className="hvr-bounce-to-right" to="orders">
+          <Link
+            onClick={handleClick}
+            className="hvr-bounce-to-right"
+            to="orders"
+          >
             Orders
           </Link>
         </div>
         <div className="signOut">
           <Link className="hvr-bounce-to-right" to="/">
-            Log Out
+            Home
           </Link>
         </div>
       </nav>

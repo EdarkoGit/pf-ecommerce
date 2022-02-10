@@ -21,6 +21,7 @@
       "type": "admin"
     },
     {
+
       "username": "leilab",
       "password": "leilabula",
       "firstName": "Leila",
@@ -28,6 +29,16 @@
       "email": "leilabula22@gmail",
       "verified": true,
       "state": true
+    },
+    {
+      "username": "nicolas",
+      "password": "nico2010",
+      "firstName": "nicolas",
+      "lastName": "biscotti",
+      "email": "nicolas.biscotti@outlook.es",
+      "verified": true,
+      "state": true,
+      "type": "user"
     }
   ]
 }
