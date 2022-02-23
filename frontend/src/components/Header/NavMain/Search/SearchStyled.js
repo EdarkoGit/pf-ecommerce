@@ -40,19 +40,26 @@ export const SearchStyled = styled.div`
     top: 5.1rem;
     left: 0;
     width: 100%;
-    max-height: 13.5rem;
+    max-height: 18rem;
+    overflow-y: scroll;
     z-index: 2;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     p {
-      height: 4.5rem;
-      margin-left: 1rem;
       display: flex;
       align-items: center;
+      max-width: calc(100% - 4rem);
+      margin-left: 1rem;
+      padding: 2.25rem 0;
+      font-size: 2rem;
       color: #0c1417;
+      overflow: hidden;
+      white-space: nowrap;
       ${hoverPointer};
+      /* text-overflow: ellipsis; styledcomponents? */
     }
   }
 `;

@@ -76,7 +76,7 @@ function Search({ data }) {
 
       {filteredData.length !== 0 && showSuggestions && (
         <div className="dataResult">
-          {filteredData.slice(0, 4).map((value, key) => {
+          {filteredData.slice(0, 8).map((value, key) => {
             return (
               <p key={key} onClick={(event) => handleSugestionClick(event)}>
                 {value.name}
